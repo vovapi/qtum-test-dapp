@@ -10,12 +10,12 @@
             <script>
                     function send() {
                         let button = document.getElementById("send-btn");
-                        button.disabled = true;
+                        // button.disabled = true;
                         // sendtocontract
-                        let contract = document.getElementById('contract').value;
-                        let data = document.getElementById('data').value;
+                        let address = document.getElementById('receiver').value;
                         let amount = document.getElementById('amount').value;
-                        let call = window.qrypto.rpcProvider.rawCall('sendtocontract', [contract, data, amount]);
+                        let call = window.qrypto.rpcProvider.rawCall('sendtoaddress', [address, amount, "qtum test dapp", "qtum test dapp"])
+                        // let call = window.qrypto.rpcProvider.rawCall('sendtocontract', [contract, data, amount]);
                         
                         // Handle incoming messages
                         function handleMessage(message) {
@@ -88,24 +88,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-3">
-                        <form onsubmit="return send()">
-                            <div class="form-group" style="display: none;">
-                                <label for="contract">Contract:</label>
-                                <input class="form-control" id="contract" type="text" value="49a941c5259e4e6ef9ac4a2a6716c1717ce0ffb6">
-                            </div>
-                            <div class="form-group" style="display: none;">
-                                <label for="data">Data:</label>
-                                <input class="form-control" id="data" type="text" value="d0821b0e0000000000000000000000000000000000000000000000000000000000000001">
-                            </div>
-                            <div class="form-group" style="display: none;">
-                                <label for="amount">Amount:</label>
-                                <input class="form-control" id="amount" type="text" value="1">
-                            </div>
-                            <input class="btn btn-primary btn-lg btn-block" type="submit" id="send-btn" value="Send Dapp transaction">
-                        </form>
-                    </div>
             </div>
+                <div class="col">
+                        <form onsubmit="return send()">
+                            <div class="form-group">
+                                <label for="amount">To Address:</label>
+                                <input class="form-control" id="receiver" type="text" value="qQP2ZBcAQ2y9HHsskDYrVF8hiyg2sp95CQ">
+                            </div>
+                            <div class="form-group">
+                                    <label for="amount">Amount:</label>
+                                    <input class="form-control" id="amount" type="text" value="2">
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-primary btn-lg btn-block" type="submit" id="send-btn" value="Send">
+                            </div>
+                        </form>
+                </div>
         </div>
     </body>
 </html>
